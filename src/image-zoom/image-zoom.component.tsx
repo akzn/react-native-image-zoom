@@ -565,13 +565,23 @@ export default class ImageViewer extends React.Component<Props, State> {
     }
   }
 
-  public componentWillReceiveProps(nextProps: Props) {
+//   public componentWillReceiveProps(nextProps: Props) {
+//     // Either centerOn has never been called, or it is a repeat and we should ignore it
+//     if (
+//       (nextProps.centerOn && !this.props.centerOn) ||
+//       (nextProps.centerOn && this.props.centerOn && this.didCenterOnChange(this.props.centerOn, nextProps.centerOn))
+//     ) {
+//       this.centerOn(nextProps.centerOn);
+//     }
+//   }
+  
+  public componentDidUpdate (prevProps: Props) {
     // Either centerOn has never been called, or it is a repeat and we should ignore it
     if (
-      (nextProps.centerOn && !this.props.centerOn) ||
-      (nextProps.centerOn && this.props.centerOn && this.didCenterOnChange(this.props.centerOn, nextProps.centerOn))
+      (prevProps.centerOn && !this.props.centerOn) ||
+      (prevProps.centerOn && this.props.centerOn && this.didCenterOnChange(this.props.centerOn, prevProps.centerOn))
     ) {
-      this.centerOn(nextProps.centerOn);
+      this.centerOn(prevProps.centerOn);
     }
   }
 
